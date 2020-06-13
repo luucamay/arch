@@ -1,5 +1,5 @@
-export default (props) => {
-  const element = document.createElement('button');
-  element.innerText = props.text;
-  return element;
-};
+import createElement from '../lib/createElement';
+
+export default (props) => createElement('button', {
+  innerText: props.text,
+});

@@ -1,9 +1,7 @@
+import createElement from '../lib/createElement';
 import SignInButton from '../components/SignInButton';
 
-export default () => {
-  const page = document.createElement('div');
-  page.className = 'sign-in';
-
-  page.appendChild(SignInButton());
-  return page;
-};
+export default () => createElement('div', {
+  className: 'sign-in',
+  children: [SignInButton()],
+});
