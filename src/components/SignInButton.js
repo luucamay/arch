@@ -1,5 +1,3 @@
-export default () => {
-  const element = document.createElement('button');
-  element.innerText = 'Sign in';
-  return element;
-};
+import Button from './Button';
+
+export default () => Button({ text: 'Sign in' });
