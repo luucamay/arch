@@ -1,4 +1,5 @@
 import SignIn from '../../src/pages/SignIn';
+
 describe('SignIn', () => {
   it('should return div with nested button', () => {
     const el = SignIn();

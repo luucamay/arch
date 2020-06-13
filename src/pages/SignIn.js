@@ -1,10 +1,9 @@
-export default () => {
-    const page = document.createElement('div');
-    page.className = 'sign-in';
-    
-    const signInButton = document.createElement('button');
-    signInButton.innerText = 'Sign in';
+import SignInButton from '../components/SignInButton';
 
-    page.appendChild(signInButton);
-    return page;
+export default () => {
+  const page = document.createElement('div');
+  page.className = 'sign-in';
+
+  page.appendChild(SignInButton());
+  return page;
 };
