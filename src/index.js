@@ -1,4 +1,8 @@
-import SignIn from './pages/SignIn';
 import render from './lib/render';
+import SignIn from './pages/SignIn';
 
-render(SignIn, document.getElementById('root'));
+const withState = 
+  Component => 
+    props => Component({ ...props, state: {} })
+
+render(withState(SignIn), document.getElementById('root'));
