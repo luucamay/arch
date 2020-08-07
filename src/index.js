@@ -1,4 +1,11 @@
-import render from './lib/render';
-import SignIn from './pages/SignIn';
+export const SignInButton = () => {
+  const btn = document.createElement('button');
+  return btn;
+}
 
-render(SignIn, document.getElementById('root'));
+export const SignIn = () => {
+  const el = document.createElement('div');
+  el.className = 'sign-in';
+  el.appendChild(SignInButton());
+  return el;
+}
