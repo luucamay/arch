@@ -1,4 +1,5 @@
 const SignInButton = (props) => {
+  console.log(props);
   const btn = document.createElement('button');
   btn.textContent = 'Sign In';
   btn.onclick = () => props.store.setState({
@@ -12,6 +13,7 @@ const SignInButton = (props) => {
 };
 
 export default (props) => {
+  
   const el = document.createElement('div');
   el.className = 'sign-in';
   el.appendChild(SignInButton(props));

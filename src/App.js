@@ -1,8 +1,8 @@
 import SignIn from './pages/SignIn';
 import Home from './pages/Home';
 
-export default ({ store }) => (
-  (store.getState().user)
-    ? Home({ store })
-    : SignIn({ store })
+export default (props) => (
+  (props.store.getState().user)
+    ? Home(props)
+    : SignIn(props)
 );
