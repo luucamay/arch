@@ -1,4 +1,6 @@
-export const signIn = () => {};
+export const signIn = () => Promise.resolve({
+  displayName: 'Lupo',
+});
 
 export const signOut = () => {};
 

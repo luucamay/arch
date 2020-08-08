@@ -1,19 +1,23 @@
-const SignInButton = (props) => {
-  console.log(props);
+const SignInButton = ({ store, auth }) => {
   const btn = document.createElement('button');
   btn.textContent = 'Sign In';
-  btn.onclick = () => props.store.setState({
-    loading: true,
-  });
+  btn.onclick = () => {
+    store.setState({ loading: true });
+    auth.signIn()
+      .then(user => store.setState({
+        loading: false,
+        user,
+      }));
+  };
 
-  if (props.store.getState().loading) {
+  if (store.getState().loading) {
     btn.disabled = 'true';
   }
   return btn;
 };
 
 export default (props) => {
-  
+  // console.log(props);
   const el = document.createElement('div');
   el.className = 'sign-in';
   el.appendChild(SignInButton(props));
