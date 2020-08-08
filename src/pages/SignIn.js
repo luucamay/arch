@@ -9,7 +9,7 @@ const SignInButton = ({ store, firebase }) => {
         loading: false,
         user,
       }))
-      .catch( erro => console.log);
+      .catch( error => console.log);
   };
 
   if (store.getState().loading) {
@@ -19,7 +19,7 @@ const SignInButton = ({ store, firebase }) => {
 };
 
 export default (props) => {
-  console.log(props);
+  // console.log(props);
   const el = document.createElement('div');
   el.className = 'sign-in';
   el.appendChild(SignInButton(props));
