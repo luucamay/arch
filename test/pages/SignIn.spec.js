@@ -4,7 +4,8 @@ describe('SignIn', () => {
   it('deberia ser una funcion', () => {
     expect(typeof SignIn).toBe('function');
   });
-  it.only('deberia retornar un div con clase sign-in', () => {
+
+  it('deberia retornar un div con clase sign-in', () => {
     const getState = jest.fn().mockReturnValue({
       loading: false,
     });
@@ -16,6 +17,28 @@ describe('SignIn', () => {
     expect(el instanceof HTMLDivElement).toBe(true);
     expect(el.className).toBe('sign-in');
   });
+
+  it.only('deberia ...', () => {
+    const auth = () => ({
+      signInWithPopup: () => {},
+    });
+    const getState = jest.fn().mockReturnValue({
+      loading: false,
+    });
+    function GoogleAuthProvider () { }
+    auth.GoogleAuthProvider = GoogleAuthProvider;
+    const setState = jest.fn();
+    const el = SignIn({
+      store: { getState, setState },
+      firebase: {
+        auth,
+      },
+    });
+    const btn = el.querySelector('button');
+    btn.click();
+    console.log(el.querySelector('button'));
+  });
+
   it('deberia contener un boton', () => {
     const el = SignIn();
     expect(el.children.length).toBe(1);
