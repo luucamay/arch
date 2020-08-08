@@ -19,13 +19,14 @@ describe('SignIn', () => {
   });
 
   it.only('deberia ...', () => {
-    const auth = () => ({
+    const auth = jest.fn().mockReturnValue({
       signInWithPopup: jest.fn().mockResolvedValue({
         user: {
           displayName: 'Fulana',
         }
       }),
     });
+    
     const getState = jest.fn().mockReturnValue({
       loading: false,
     });
@@ -40,8 +41,9 @@ describe('SignIn', () => {
 
     const btn = el.querySelector('button');
     btn.click();
-    
+
     expect(setState.mock.calls[0]).toEqual([{ loading: true }]);
+    expect(auth.mock.calls).toMatchSnapshot();
   });
 
   it('deberia contener un boton', () => {
