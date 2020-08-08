@@ -1,14 +1,18 @@
 import render from './lib/render';
 import createStore from './lib/createStore';
-import SignIn from './pages/SignIn';
+import App from './App';
 
-const store = createStore({ loading: false });
-const withState =
+const store = createStore({
+  loading: false,
+  user: { displayName: 'Lupo' },
+});
+
+const withStore =
   Component =>
     props => Component({ ...props, store });
 
 const doRender = () =>
-  render(withState(SignIn), document.getElementById('root'));
+  render(withStore(App), document.getElementById('root'));
 
 store.suscribe(doRender);
 
