@@ -1,11 +1,1 @@
-{
-  "presets": [["env", { "modules": false }]],
-  "env": {
-    "test": {
-      "plugins": [
-        "transform-es2015-modules-commonjs",
-        "@babel/plugin-transform-destructuring"
-      ]
-    }
-  }
-}
+{ "presets": ["@babel/preset-env"] }

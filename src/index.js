@@ -1,4 +1,15 @@
 import render from './lib/render';
-import SignIn from './pages/SignIn';
+import store, { withStore } from './store';
+// import { withAuth } from './lib/auth';
+import { withFirebase } from './lib/firebase';
+import App from './App';
 
-render(SignIn, document.getElementById('root'));
+const doRender = () =>
+  render(
+    withStore(withFirebase(App)),
+    document.getElementById('root')
+    );
+
+store.suscribe(doRender);
+
+doRender();

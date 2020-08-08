@@ -1,12 +1,60 @@
+import createStore from '../../src/lib/createStore';
 import SignIn from '../../src/pages/SignIn';
 
 describe('SignIn', () => {
-  it('should return div with nested button', () => {
-    const el = SignIn();
-    expect(el.tagName).toBe('DIV');
+  it('deberia ser una funcion', () => {
+    expect(typeof SignIn).toBe('function');
+  });
+
+  it('deberia retornar un div con clase sign-in', () => {
+    const getState = jest.fn().mockReturnValue({
+      loading: false,
+    });
+    const el = SignIn({
+      store: { getState }
+    });
+    expect(getState.mock.calls.length).toBe(1);
+    expect(getState.mock.calls[0].length).toBe(0);
+    expect(el instanceof HTMLDivElement).toBe(true);
     expect(el.className).toBe('sign-in');
+  });
+
+  it.only('deberia ...', () => {
+    const auth = jest.fn().mockReturnValue({
+      signInWithPopup: jest.fn().mockResolvedValue({
+        user: {
+          displayName: 'Fulana',
+        }
+      }),
+    });
+
+    const getState = jest.fn().mockReturnValue({
+      loading: false,
+    });
+    function GoogleAuthProvider () { }
+    auth.GoogleAuthProvider = GoogleAuthProvider;
+
+    const setState = jest.fn();
+    const store = createStore({ loading:false });
+    const el = SignIn({
+      store,
+      firebase: { auth },
+    });
+
+    const btn = el.querySelector('button');
+
+    console.log(store.getState());
+
+    btn.click();
+
+    // expect(setState.mock.calls[0]).toEqual([{ loading: true }]);
+    expect(auth.mock.calls).toMatchSnapshot();
+    console.log(store.getState());
+  });
+
+  it('deberia contener un boton', () => {
+    const el = SignIn();
     expect(el.children.length).toBe(1);
     expect(el.children[0].tagName).toBe('BUTTON');
-    expect(el.children[0].innerText).toBe('Sign in');
   });
 });
