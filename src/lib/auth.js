@@ -1,6 +1,8 @@
-export const signIn = () => Promise.resolve({
-  displayName: 'Lupo',
-});
+export const signIn = () =>
+  new Promise(resolve => setTimeout(
+    () => resolve({ displayName: 'Lupo' }),
+    2 * 1000
+  ));
 
 export const signOut = () => {};
 
