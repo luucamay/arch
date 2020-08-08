@@ -10,7 +10,7 @@ const SignInButton = (props) => {
 export default (props) => {
   console.log(props.store.getState().loading);
   const el = document.createElement('div');
-  el.className = 'sign-in'; 
+  el.className = 'sign-in';
   el.appendChild(SignInButton(props));
   return el;
 };

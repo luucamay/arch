@@ -7,4 +7,9 @@ const withState =
   Component =>
     props => Component({ ...props, store });
 
-render(withState(SignIn), document.getElementById('root'));
+const doRender = () =>
+  render(withState(SignIn), document.getElementById('root'));
+
+store.suscribe(doRender);
+
+doRender();
