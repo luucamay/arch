@@ -1,13 +1,15 @@
-const SignInButton = ({ store, auth }) => {
+const SignInButton = ({ store, firebase }) => {
   const btn = document.createElement('button');
   btn.textContent = 'Sign In';
   btn.onclick = () => {
     store.setState({ loading: true });
-    auth.signIn()
-      .then(user => store.setState({
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider)
+      .then(({ user }) => store.setState({
         loading: false,
         user,
-      }));
+      }))
+      .catch( erro => console.log);
   };
 
   if (store.getState().loading) {
@@ -17,7 +19,7 @@ const SignInButton = ({ store, auth }) => {
 };
 
 export default (props) => {
-  // console.log(props);
+  console.log(props);
   const el = document.createElement('div');
   el.className = 'sign-in';
   el.appendChild(SignInButton(props));
