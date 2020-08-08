@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "arquitectura-vanillaja-redux",
+    "development": "arquitectura-vanillaja-redux"
+  }
+}
