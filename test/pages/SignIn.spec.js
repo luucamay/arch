@@ -20,23 +20,28 @@ describe('SignIn', () => {
 
   it.only('deberia ...', () => {
     const auth = () => ({
-      signInWithPopup: () => {},
+      signInWithPopup: jest.fn().mockResolvedValue({
+        user: {
+          displayName: 'Fulana',
+        }
+      }),
     });
     const getState = jest.fn().mockReturnValue({
       loading: false,
     });
     function GoogleAuthProvider () { }
     auth.GoogleAuthProvider = GoogleAuthProvider;
+
     const setState = jest.fn();
     const el = SignIn({
       store: { getState, setState },
-      firebase: {
-        auth,
-      },
+      firebase: { auth },
     });
+
     const btn = el.querySelector('button');
     btn.click();
-    console.log(el.querySelector('button'));
+    
+    expect(setState.mock.calls[0]).toEqual([{ loading: true }]);
   });
 
   it('deberia contener un boton', () => {
